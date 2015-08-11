@@ -1,4 +1,5 @@
 import pprint
+import json
 
 class Event(object):
 	"""docstring for Event"""
@@ -50,14 +51,13 @@ class Event(object):
 			self.addUmask(line.replace("\n",""))
 
 	def toJSON(self):
-		ret = "{"
-		ret += "'IDX' : '" + self.IDX + "', \n"
-		ret += "'PMU name' : '" + self.PMU + "', \n"
-		ret += "'Name' : '" + self.name + "', \n"
-		ret += "'Description' : '" + self.description + "', \n"
-		ret += "'Codes' : " + str(pprint.pformat(self.registro, width=1)) + " \n"
-		ret += "}"
-		return ret
+		ret = {}
+		ret["IDX"] = self.IDX
+		ret["PMU name"] = self.PMU
+		ret["Name"] = self.name
+		ret["Description"] = self.description
+		ret["Codes"] = self.registro
+		return json.dumps(ret)
 
 	def __str__(self):
 		ret = ""
