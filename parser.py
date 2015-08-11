@@ -1,4 +1,5 @@
 import sys
+import json
 import subprocess
 from Event import Event
 
@@ -58,6 +59,7 @@ for evento in listaEventos:
 
 # 4.- Imprimir la lista de eventos en formato JSON
 print "["
-for reg in listaEventos:
-	print reg.toJSON()+","
+for reg in listaEventos[:-1]:
+	print reg.toJSON(), ","
+print listaEventos[-1].toJSON()
 print "]"
